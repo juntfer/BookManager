@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://192.168.159.133:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="6@192.168.159.133" uuid="a18ef76a-0f96-4aab-8b21-e4b4a633ff5a">
+      <driver-ref>redis</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>jdbc.RedisDriver</jdbc-driver>
+      <jdbc-url>jdbc:redis://192.168.159.133:6379/6</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

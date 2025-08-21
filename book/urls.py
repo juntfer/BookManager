@@ -1,8 +1,16 @@
-#导入Django自带的path函数，用于定义资源路径和视图函数
 from django.urls import path
-#导入当前子应用的视图函数
-from .views import index
-#定义当前子应用的资源路径和视图函数
+#首先导入自定义的转换器类
+from Converter.MobileConverter import MobileConverter
+#导入注册转换器
+from django.urls.converters import register_converter
+from .views import index,getcookie,setsession,getsession
+#注册路由转换器（自定义转换器类名、别名）
+register_converter(MobileConverter, 'mobile')
 urlpatterns=[
+    #对接收路径参数占位符进行类型限制
     path('index/', index),
+    path('cookie/',getcookie),
+    path('session/', setsession),
+    path('getsession/', getsession),
 ]
+

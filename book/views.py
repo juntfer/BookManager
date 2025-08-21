@@ -1,14 +1,60 @@
-from MySQLdb import connect
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
-# 引入HttpRequest和HttpResponse
-from django.http import  HttpRequest
-from django.http import  HttpResponse
 
-#定义视图函数，至少定义一个参数必须用于接收用户请求
-#这个请求其实就是HttpRequest的类对象，用于接收用户请求，一般命名为request
-# 视图函数必须返回一个HttpResponse对象用于响应用户请求
 def index(request):
-    session1={"name":"王小明"}
-    return render(request, 'book/index.html',context=session1)
+    response = HttpResponse('ok')
+    # 设置cookie信息
+    response.set_cookie('username', 'zhangsan', max_age=3600)
+    return response
+
+
+def getcookie(request):
+    response = HttpResponse('获取cookie信息')
+    # 设置cookie信息
+    cookie1 = request.COOKIES.get('username')
+    print("cookie信息为：", cookie1)
+    return response
+
+
+def delcookie(request):
+    response = HttpResponse('ok')
+    # 删除cookie信息
+    response.delete_cookie('name')
+    return response
+
+
+def setsession(request):
+    response = HttpResponse('ok')
+    # 设置session信息
+    request.session['username'] = 'lisi'
+    #设置session的过期时间
+    request.session.set_expiry(3600)
+    return response
+
+
+def getsession(request):
+    response = HttpResponse('ok')
+    # 获取session信息
+    username = request.session.get("username")
+    print("session信息为：", username)
+    return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
