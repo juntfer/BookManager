@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     response = HttpResponse('ok')
@@ -40,16 +40,11 @@ def getsession(request):
     print("session信息为：", username)
     return response
 
-class RegisterView(View):
+class RegisterView(LoginRequiredMixin,View):
     def get(self,request):
         return HttpResponse('get请求返回报文')
     def post(self, request):
         return HttpResponse('post请求返回报文')
-
-
-
-
-
 
 
 
