@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.deprecation import MiddlewareMixin
 
 def index(request):
     response = HttpResponse('ok')
@@ -40,12 +41,20 @@ def getsession(request):
     print("session信息为：", username)
     return response
 
-class RegisterView(LoginRequiredMixin,View):
+class RegisterView(LoginRequiredMixin,View,MiddlewareMixin):
+    # 处理请求前自动调用
+    def process_request(self, request):
+        print('process_request1 被调用')
+    # 处理视图前自动调用
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        print('process_view1 被调用')
+    def process_response(self, request, response):
+        print('process_response1 被调用')
+        return response
     def get(self,request):
         return HttpResponse('get请求返回报文')
     def post(self, request):
         return HttpResponse('post请求返回报文')
-
 
 
 

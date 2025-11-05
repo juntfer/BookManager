@@ -13,6 +13,6 @@ urlpatterns=[
     path('cookie/',getcookie),
     path('session/', setsession),
     path('getsession/', getsession),
-    path('register/',RegisterView.as_view())
+    path('register/',RegisterView.as_view()),
 ]
 

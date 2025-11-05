@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'book.middleware.TestMiddleWare', #在setting中添加中间件
 ]
 
 ROOT_URLCONF = 'BookManager.urls'
@@ -86,15 +87,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'NAME': 'bookmanager',  # 对应的库名称
         'USER': 'root',      # 数据库用户名
-        'PASSWORD': 'Tangkai.123', # 数据库密码
-        'HOST': '192.168.159.133',  # 数据库主机
+        'PASSWORD': 'tangkai.123', # 数据库密码
+        'HOST': '172.26.234.165',  # 数据库主机
         'PORT': '3306',    # 数据库端口
     }
 }
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://192.168.159.133:6379/6',
+        'LOCATION': 'redis://172.26.234.165:6379/6',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
